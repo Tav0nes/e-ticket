@@ -1,0 +1,30 @@
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  label {
+    font-weight: 500;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+a {
+  color: var(--mat-sys-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 32px;
+  color: var(--mat-sys-on-surface-variant);
+}
