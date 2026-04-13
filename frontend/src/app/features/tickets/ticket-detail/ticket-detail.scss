@@ -1,0 +1,28 @@
+mat-card {
+  max-width: 720px;
+  margin: 24px auto;
+}
+
+.description {
+  margin: 16px 0;
+  line-height: 1.6;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 16px; 
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--mat-sys-on-surface-variant);
+  font-weight: 500;
+}

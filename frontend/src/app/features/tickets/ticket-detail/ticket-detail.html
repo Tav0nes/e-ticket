@@ -1,0 +1,40 @@
+@if (ticket) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ ticket.title }}</mat-card-title>
+      <mat-card-subtitle>Created: {{ ticket.createdAt | date: 'medium' }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="description">{{ ticket.description }}</p>
+
+      <div class="meta">
+        <div clas="meta-item">
+          <span class="label">Status:</span>
+          <mat-chip [highlighted]="true">{{ ticket.status }}</mat-chip>
+        </div>
+
+        <div class="meta-item">
+          <span class="label">Priority:</span>
+          <mat-chip [highlighted]="true">{{ ticket.priority }}</mat-chip>
+        </div>
+
+        @if (ticket.category) {
+          <div class="meta-item">
+            <span class="label">Category:</span>
+            <span>{{ ticket.category }}</span>
+          </div>
+        }
+
+        <div class="meta-item">
+          <span class="label">Last Updated:</span>
+          <span>{{ ticket.updatedAt | date: 'medium' }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a mat-button routerLink="/tickets">Back to List</a>
+    </mat-card-actions>
+  </mat-card>
+}
