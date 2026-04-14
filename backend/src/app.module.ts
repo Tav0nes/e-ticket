@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TicketsModule } from './tickets/tickets.module';
 import { CommentsModule } from './comments/comments.module';
+import { AuditModule } from './audit/audit.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { CommentsModule } from './comments/comments.module';
     }),
     TicketsModule,
     CommentsModule,
+    AuditModule,
   ],
   controllers: [AppController],
   providers: [AppService],
