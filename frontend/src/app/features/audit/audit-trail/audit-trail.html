@@ -1,0 +1,22 @@
+<section class="trail">
+  <h3>Audit Log</h3>
+
+  @if (entries.length === 0) {
+    <p class="empty">No audit entries yet.</p>
+  } @else {
+    <mat-list>
+      @for (entry of entries; track entry.id) {
+        <mat-list-item>
+          <mat-icon matListItemIcon>history</mat-icon>
+          <div matListItemTitle>{{ describeAction(entry) }}</div>
+          <div matListItemLine class="meta">
+            {{ entry.timeStamp | date:'medium' }}
+            @if (entry.actorId) {
+              by {{ entry.actorId }}
+            }
+          </div>
+        </mat-list-item>
+      }
+    </mat-list>
+  }
+</section>

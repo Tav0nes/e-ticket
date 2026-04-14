@@ -7,10 +7,11 @@ import { DatePipe } from '@angular/common';
 import { Ticket } from '../ticket.model';
 import { TicketService } from '../ticket.service';
 import { CommentTimeline } from '../../comments/comment-timeline/comment-timeline';
+import { AuditTrail } from '../../audit/audit-trail/audit-trail';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [MatCardModule, MatChipsModule, MatButtonModule, RouterLink, DatePipe, CommentTimeline],
+  imports: [MatCardModule, MatChipsModule, MatButtonModule, RouterLink, DatePipe, CommentTimeline, AuditTrail],
   templateUrl: './ticket-detail.html',
   styleUrl: './ticket-detail.scss',
 })
