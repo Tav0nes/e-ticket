@@ -14,4 +14,8 @@ export class TicketService {
   findOne(id: string) {
     return this.http.get<Ticket>(`${this.apiUrl}/${id}`);
   }
+
+  create(ticket: Partial<Ticket>) {
+    return this.http.post<Ticket>(this.apiUrl, ticket);
+  }
 }

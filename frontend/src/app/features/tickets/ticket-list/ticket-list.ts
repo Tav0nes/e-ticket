@@ -5,10 +5,11 @@ import { RouterLink } from '@angular/router';
 import { Ticket } from '../ticket.model'; 
 import { TicketService } from '../ticket.service';
 import { DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-ticket-list',
-  imports: [MatTableModule, MatChipsModule, RouterLink, DatePipe],
+  imports: [MatTableModule, MatChipsModule, RouterLink, DatePipe, MatButtonModule],
   templateUrl: './ticket-list.html',
   styleUrl: './ticket-list.scss',
 })
