@@ -18,4 +18,8 @@ export class TicketService {
   create(ticket: Partial<Ticket>) {
     return this.http.post<Ticket>(this.apiUrl, ticket);
   }
+
+  update(id: string, ticket: Partial<Ticket>) {
+    return this.http.patch<Ticket>(`${this.apiUrl}/${id}`, ticket);
+  }
 }

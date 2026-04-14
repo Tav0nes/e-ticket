@@ -8,6 +8,10 @@ export const ticketsRoutes: Routes = [
   {
     path: 'new',
     loadComponent: () => import('./ticket-form/ticket-form').then(m => m.TicketForm),
+  },
+  {
+    path: ':id/edit',
+    loadComponent: () => import('./ticket-edit/ticket-edit').then(m => m.TicketEdit),
   },  
   {
     path: ':id',

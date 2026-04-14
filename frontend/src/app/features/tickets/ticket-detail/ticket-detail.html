@@ -35,6 +35,7 @@
 
     <mat-card-actions>
       <a mat-button routerLink="/tickets">Back to List</a>
+      <a mat-flat-button [routerLink]="['/tickets', ticket.id, 'edit']">Edit Ticket</a>
     </mat-card-actions>
   </mat-card>
 }
