@@ -1,0 +1,48 @@
+.timeline {
+  max-width: 720px;
+  margin: 24px auto;  
+}
+
+h3 {
+  margin-bottom: 12px;  
+}
+
+.empty {
+  color: var(--mat-sys-on-surface-variant);
+  font-style: italic;
+}
+
+.comment {
+  margin-bottom: 12px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+
+  .date {
+    color: var(--mat-sys-on-surface-variant);
+    font-size: 0.85rem;
+  }
+}
+
+.body {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.new-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+
+  mat-form-filed {
+    width: 100%;
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}

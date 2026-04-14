@@ -6,10 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { Ticket } from '../ticket.model';
 import { TicketService } from '../ticket.service';
+import { CommentTimeline } from '../../comments/comment-timeline/comment-timeline';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [MatCardModule, MatChipsModule, MatButtonModule, RouterLink, DatePipe],
+  imports: [MatCardModule, MatChipsModule, MatButtonModule, RouterLink, DatePipe, CommentTimeline],
   templateUrl: './ticket-detail.html',
   styleUrl: './ticket-detail.scss',
 })

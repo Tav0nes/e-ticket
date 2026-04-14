@@ -38,4 +38,6 @@
       <a mat-flat-button [routerLink]="['/tickets', ticket.id, 'edit']">Edit Ticket</a>
     </mat-card-actions>
   </mat-card>
+
+  <app-comment-timeline [ticketId]="ticket.id" />
 }

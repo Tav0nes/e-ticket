@@ -1,0 +1,27 @@
+<section class="comment">
+  <h3>Comments</h3>
+
+  @if (comments.length === 0) {
+    <p class="empty">No comments yet.</p>
+  }
+
+  @for (c of comments; track c.id) {
+    <mat-card class="comment">
+      <mat-card-header>
+        <div class="comment-header">
+          <strong>{{ c.authorId }}</strong>
+          <span class="date">{{ c.createdAt | date:'medium' }}</span>
+        </div>
+        <p class="body">{{ c.body }}</p>
+      </mat-card-header>
+    </mat-card>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="new-comment">
+    <mat-form-field appearance="outline">
+      <mat-label>Add a comment</mat-label>
+      <textarea matInput formControlName="body" rows="3"></textarea>
+    </mat-form-field>
+    <button mat-flat-button type="submit" [disabled]="form.invalid">Post</button>
+  </form>
+</section>
