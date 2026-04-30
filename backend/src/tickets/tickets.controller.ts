@@ -13,27 +13,32 @@ import { Ticket } from './ticket.entity';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Roles } from '../auth/roles.decorator';
 
 @ApiTags('tickets')
 @Controller('tickets')
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
+  @Roles('reporter', 'engineer', 'admin')
   @Post()
   create(@Body() CreateTicketDto: CreateTicketDto): Promise<Ticket> {
     return this.ticketsService.create(CreateTicketDto);
   }
 
+  @Roles('viewer', 'reporter', 'engineer', 'admin')
   @Get()
   findAll(): Promise<Ticket[]> {
     return this.ticketsService.findAll();
   }
 
+  @Roles('viewer', 'reporter', 'engineer', 'admin')
   @Get(':id')
   findOne(@Param('id', ParseUUIDPipe) id: string): Promise<Ticket> {
     return this.ticketsService.findOne(id);
   }
 
+  @Roles('engineer', 'admin')
   @Patch(':id')
   update( 
     @Param('id', ParseUUIDPipe) id: string,
@@ -42,6 +47,7 @@ export class TicketsController {
     return this.ticketsService.update(id, UpdateTicketDto);
   }
 
+  @Roles('admin')
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.ticketsService.remove(id);
