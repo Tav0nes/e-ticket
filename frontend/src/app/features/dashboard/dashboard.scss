@@ -1,0 +1,36 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.count-card {
+  min-width: 140px;
+  text-align: center;
+}
+
+.count-card mat-card-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.total {
+  border-left: 4px solid #1976d2;
+}
+
+.low {
+  border-left: 4px solid #4caf50;
+}
+
+.medium {
+  border-left: 4px solid #ff9800;
+}
+
+.high {
+  border-left: 4px solid #f44336;
+}
+
+.critical {
+  border-left: 4px solid #9c27b0;
+}
