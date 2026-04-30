@@ -6,10 +6,12 @@ import { Ticket } from '../ticket.model';
 import { TicketService } from '../ticket.service';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { HasRolesDirective } from 'keycloak-angular';
+import { MatSortModule, Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-ticket-list',
-  imports: [MatTableModule, MatChipsModule, RouterLink, DatePipe, MatButtonModule],
+  imports: [MatTableModule, MatChipsModule, RouterLink, DatePipe, MatButtonModule, HasRolesDirective, MatSortModule],
   templateUrl: './ticket-list.html',
   styleUrl: './ticket-list.scss',
 })
@@ -45,7 +47,44 @@ export class TicketList implements OnInit {
   filterByPriority(priority: string) {  
     this.activePriorityFilter = this.activePriorityFilter === priority ? null : priority; 
     this.applyFilters();  
-  } 
+  }
+  
+  sortData(sort: Sort) {
+    const data = [...this.filteredTickets];
+
+    if (!sort.active || sort.direction === '') {
+      this.filteredTickets = [...this.tickets];
+      return;
+    }
+
+    const isAsc = sort.direction === 'asc';
+    this.filteredTickets = data.sort((a, b) => {
+      switch (sort.active) {  
+        case 'title':
+          return this.compare(a.title, b.title, isAsc);
+        case 'status':
+          return this.compare(a.status, b.status, isAsc);
+        case 'priority':
+          return this.compare(this.priorityOrder[a.priority], this.priorityOrder[b.priority], isAsc);
+        case 'createdAt':
+          return this.compare(a.createdAt, b.createdAt, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  private compare (a: string | Date | number, b: string | Date | number, isAsc: boolean): number {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  private priorityOrder: Record<string, number> = {
+    'LOW': 0,
+    'MEDIUM': 1,
+    'HIGH': 2,
+    'CRITICAL': 3,
+  };
+
 
   private applyFilters() {    
     this.filteredTickets = this.tickets.filter((t) => {  
