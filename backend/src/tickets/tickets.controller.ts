@@ -14,6 +14,8 @@ import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../auth/roles.decorator';
+import { CurrentUser } from 'src/auth/current-user.decorator';
+import type { AuthenticatedUser } from 'src/auth/jwt.strategy';
 
 @ApiTags('tickets')
 @Controller('tickets')
@@ -22,8 +24,11 @@ export class TicketsController {
 
   @Roles('reporter', 'engineer', 'admin')
   @Post()
-  create(@Body() CreateTicketDto: CreateTicketDto): Promise<Ticket> {
-    return this.ticketsService.create(CreateTicketDto);
+  create(
+    @Body() CreateTicketDto: CreateTicketDto,
+    @CurrentUser() user: AuthenticatedUser,
+  ): Promise<Ticket> {
+    return this.ticketsService.create(CreateTicketDto, user);
   }
 
   @Roles('viewer', 'reporter', 'engineer', 'admin')

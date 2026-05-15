@@ -47,16 +47,17 @@ describe('TicketsService', () => {
   });
   
   describe('create', () => {
-    it('should create and return a ticket', async () => {
+    it('should create and return a ticket with reporterId from current user', async () => {
       const dto: CreateTicketDto = { title: 'New ticket' };
+      const user = { id: 'sub-123', username: 'gustavo', roles: ['engineer'] };
       const ticket = mockTicket();
 
       repo.create.mockReturnValue(ticket);
       repo.save.mockResolvedValue(ticket);
 
-      const result = await service.create(dto);
+      const result = await service.create(dto, user);
 
-      expect(repo.create).toHaveBeenCalledWith(dto);
+      expect(repo.create).toHaveBeenCalledWith({ ...dto, reporterId: 'gustavo' });
       expect(repo.save).toHaveBeenCalledWith(ticket);
       expect(result).toEqual(ticket);
     });
