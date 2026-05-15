@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle('e-ticket API')
     .setDescription('Incident / Ticket management API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

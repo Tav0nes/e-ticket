@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Ticket } from "./ticket.entity";
+import { Ticket, TicketStatus } from "./ticket.entity";
 import { CreateTicketDto } from "./dto/create-ticket.dto";
 import { UpdateTicketDto } from "./dto/update-ticket.dto";
+import { AuthenticatedUser } from "../auth/jwt.strategy";
 
 @Injectable()
 export class TicketsService {
@@ -12,8 +13,11 @@ export class TicketsService {
     private readonly ticketsRepo: Repository<Ticket>,
   ) {}
 
-  create(data: CreateTicketDto): Promise<Ticket> {
-    const ticket = this.ticketsRepo.create(data);
+  create(data: CreateTicketDto, user: AuthenticatedUser): Promise<Ticket> {
+    const ticket = this.ticketsRepo.create({
+      ...data,
+      reporterId: user.username,
+    });
     return this.ticketsRepo.save(ticket);
   }
 
@@ -31,6 +35,12 @@ export class TicketsService {
 
   async update(id: string, data: UpdateTicketDto): Promise<Ticket> {
     const ticket = await this.findOne(id);
+    if (
+      data.status === TicketStatus.RESOLVED &&
+      ticket.status !== TicketStatus.RESOLVED
+    ) {
+      ticket.resolvedAt = new Date();
+    }
     Object.assign(ticket, data);
     return this.ticketsRepo.save(ticket);
   }

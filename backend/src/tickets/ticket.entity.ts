@@ -52,4 +52,7 @@ export class Ticket {
 
   @UpdateDateColumn() 
   updatedAt: Date;
+
+  @Column({ type: 'timestamp', nullable: true })
+  resolvedAt: Date | null;
 }
