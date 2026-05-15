@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { RolesGuard } from './auth/roles.guard';
 import { AdminModule } from './admin/admin.module';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AdminModule } from './admin/admin.module';
     AuditModule,
     AuthModule,
     AdminModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [
