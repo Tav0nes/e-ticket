@@ -1,0 +1,79 @@
+<mat-sidenav-container class="shell" autosize>
+  <mat-sidenav 
+    class="shell__sidenav"
+    mode="side"
+    [opened]="sidenavOpen()"
+    [disableClose]="true"
+  >
+    <div class="shell__brand">E-Ticket</div>
+    <div class="shell__brand__2">Internal Ops</div>
+
+    <nav class="shell__nav">
+      @for (item of navItems; track item.label) {
+        @if (isGroup(item)) {
+          <button
+            type="button"
+            class="shell__row shell__group-toggle"
+            (click)="toggleGroup(item.label)"
+          >
+            <mat-icon class="shell__icon">{{ item.icon }}</mat-icon>
+            <span class="shell__label">{{ item.label }}</span>
+            <mat-icon
+              class="shell__chevron"
+              [class.shell__chevron--open]="isGroupOpen(item.label)"
+            >
+              chevron_right
+            </mat-icon>
+          </button>
+
+          @if (isGroupOpen(item.label)) {
+            <div class="shell__children">
+              @for (child of item.children; track child.label) {
+                @if (canSee(child)) {
+                  <a
+                    class="shell__row shell__row--child"
+                    [routerLink]="child.route"
+                    routerLinkActive="shell__row--active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    <mat-icon class="shell__icon">{{ child.icon }}</mat-icon>
+                    <span class="shell__label">{{ child.label }}</span>
+                  </a>
+                }
+              }
+            </div>
+          }
+        } @else {
+          <a
+            class="shell__row"
+            [routerLink]="item.route"
+            routerLinkActive="shell__row--active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <mat-icon class="shell__icon">{{ item.icon }}</mat-icon>
+            <span class="shell__label">{{ item.label }}</span>
+          </a>
+        }
+      }
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="shell__topbar">
+      <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="shell__spacer"></span>
+      @if (authenticated) {
+        <span class="shell__username">{{ username }}</span>
+        <button mat-button (click)="logout()">Logout</button> 
+      } @else {
+        <button mat-button (click)="login()">Login</button> 
+      }
+    </mat-toolbar>
+
+    <main class="shell__main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

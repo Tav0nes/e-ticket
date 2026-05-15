@@ -1,18 +1,1 @@
-<mat-toolbar color="primary">
-  <a routerLink="/dashboard" class="app-title">E-Ticket</a>
-  <a mat-button routerLink="/tickets">Tickets</a>
-  <ng-template [kaHasRoles]="['admin']" [kaHasRolesCheckRealm]="true">
-    <a mat-button routerLink="/admin">Admin</a>
-  </ng-template>
-  <span class="spacer"></span>
-  @if (authenticated) {
-    <span class="username">{{ username }}</span>
-    <button mat-button (click)="logout()">Logout</button>
-  } @else {
-    <button mat-button (click)="login()">Login</button>
-  }
-</mat-toolbar>
-
-<main>
-  <router-outlet />
-</main>
+<app-shell />
