@@ -1,0 +1,32 @@
+.async-state-center {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+.async-state-error {
+  margin: 16px 0;
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  mat-icon {
+    color: var(--mat-sys-error, #d32f2f);
+  }
+}
+
+.async-state-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px;
+  color: rgba(0, 0, 0, 0.6);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+}

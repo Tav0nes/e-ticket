@@ -1,0 +1,20 @@
+@if (loading) {
+  <div class="async-state-center">
+    <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+  </div>
+} @else if (error) {
+  <mat-card class="async-state-error">
+    <mat-card-content>
+      <mat-icon>error_outline</mat-icon>
+      <span>{{ error }}</span>
+      <button mat-stroked-button (click)="retry.emit()">Try again</button>  
+    </mat-card-content>
+  </mat-card>
+} @else if (empty) {
+  <div class="async-state-empty">
+    <mat-icon>inbox</mat-icon>
+    <p>{{ emptyMessage }}</p>
+  </div>
+} @else {
+  <ng-content />
+}
