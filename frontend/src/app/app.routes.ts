@@ -23,8 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'unassigned-tickets',
-    data: { title: 'Unassigned Tickets' },
-    loadComponent: () => import('./shared/placeholder-page/placeholder-page').then(m => m.PlaceholderPage),
+    loadComponent: () => import('./features/tickets/unassigned-tickets/unassigned-tickets').then(m => m.UnassignedTickets),
   },
   {
     path: 'search-archive',
