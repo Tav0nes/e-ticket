@@ -12,6 +12,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { RolesGuard } from './auth/roles.guard';
 import { AdminModule } from './admin/admin.module';
 import { StatsModule } from './stats/stats.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { StatsModule } from './stats/stats.module';
     AuthModule,
     AdminModule,
     StatsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [
