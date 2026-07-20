@@ -31,6 +31,9 @@ import { UsersModule } from './users/users.module';
         database: configService.get('POSTGRES_DB'),
         autoLoadEntities: true,
         synchronize: true, // Note: Set to false in production
+        ssl: configService.get('DB_SSL') === 'true' ? {
+          rejectUnauthorized: false } : false,
+        }
       }),
     }),
     TicketsModule,
