@@ -33,7 +33,6 @@ import { UsersModule } from './users/users.module';
         synchronize: true, // Note: Set to false in production
         ssl: configService.get('DB_SSL') === 'true' ? {
           rejectUnauthorized: false } : false,
-        }
       }),
     }),
     TicketsModule,
