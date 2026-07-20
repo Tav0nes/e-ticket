@@ -31,3 +31,6 @@ coverage/
 # Claude
 CLAUDE.md
 docs/
+
+# Personal deploy notes (keep out of the public repo)
+DEPLOY.md
