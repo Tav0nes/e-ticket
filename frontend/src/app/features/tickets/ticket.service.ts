@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Ticket } from './ticket.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TicketService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/tickets';
+  private apiUrl = `${environment.apiUrl}/tickets`;
 
   findAll() {
     return this.http.get<Ticket[]>(this.apiUrl);

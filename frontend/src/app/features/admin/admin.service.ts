@@ -1,6 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from '../../../environments/environment';
 
 export interface KeycloakUser {
   id: string;
@@ -15,7 +16,7 @@ export interface KeycloakUser {
 @Injectable({ providedIn: 'root' })
 export class AdminService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/admin';
+  private apiUrl = `${environment.apiUrl}/admin`;
 
   getUsers(): Observable<KeycloakUser[]> {
     return this.http.get<KeycloakUser[]>(`${this.apiUrl}/users`);
